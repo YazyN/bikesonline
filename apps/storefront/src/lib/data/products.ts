@@ -93,20 +93,24 @@ export const listProducts = async ({
 
       const nextPage = count > offset + limit ? pageParam + 1 : null;
 
-      const response = products.filter(prod => {
+      const response = products.map(prod => {
         // @ts-ignore Property 'seller' exists but TypeScript doesn't recognize it
         const reviews = prod.seller?.reviews.filter(item => !!item) ?? [];
-        return (
-          // @ts-ignore Property 'seller' exists but TypeScript doesn't recognize it
-          prod?.seller && {
+        
+        // Include products with or without seller
+        if (prod?.seller) {
+          return {
             ...prod,
             seller: {
               // @ts-ignore Property 'seller' exists but TypeScript doesn't recognize it
               ...prod.seller,
               reviews
             }
-          }
-        );
+          };
+        }
+        
+        // Return products without seller (admin-created)
+        return prod;
       });
 
       return {

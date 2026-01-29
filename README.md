@@ -154,3 +154,45 @@ mercur-cli dev
 
 - [Medusa Website](https://www.medusajs.com/)
 - [Medusa Docs](https://docs.medusajs.com/v2)
+
+# BikesOnline
+
+This is a refactor of an existing website called **BikesOnline**, currently in testing, built with Mercur and MedusaJS.
+
+## Important Notes
+- **Use Yarn:** Please use `yarn` for installing dependencies. Using other package managers may cause problems.
+
+## Reference Documentation
+- MercurJS setup guide: [https://docs.mercurjs.com/development/set-up](https://docs.mercurjs.com/development/set-up)
+
+## Setup Steps
+
+1. **Install dependencies in the base folder:**
+   ```sh
+   yarn install
+   ```
+2. **Install dependencies in each app folder (just to be sure):**
+   ```sh
+   cd apps/<app-folder>
+   yarn install
+   ```
+   Do this for:
+   - backend
+   - admin-panel
+   - vendor-panel
+   - storefront
+
+3. **Start development servers:**
+   In each app folder, run:
+   ```sh
+   yarn dev
+   ```
+   Start the following apps:
+   - backend
+   - admin-panel
+   - vendor-panel
+   - storefront
+
+---
+
+For more details, see the [MercurJS setup documentation](https://docs.mercurjs.com/development/set-up).

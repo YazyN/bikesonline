@@ -1,7 +1,7 @@
 import {
   BannerSection,
   BlogSection,
-  Hero,
+  Carousel,
   HomeCategories,
   HomeProductSection,
   ShopByStyleSection,
@@ -160,19 +160,32 @@ export default async function Home({
         }}
       />
 
-      <Hero
-        image="/images/hero/Image.jpg"
-        heading="Snag your style in a flash"
-        paragraph="Buy, sell, and discover pre-loved gems from the trendiest brands."
-        buttons={[
-          { label: "Buy now", path: "/categories" },
+      <Carousel
+        slides={[
           {
-            label: "Sell now",
-            path:
-              process.env.NEXT_PUBLIC_VENDOR_URL ||
-              "https://vendor.mercurjs.com",
+            image: "/images/carousel/categoria-inverno.jpg",
+            //heading: "Snag your style in a flash",
+            //paragraph: "Buy, sell, and discover pre-loved gems from the trendiest brands.",
+            //button: { label: "Buy now", path: "/categories" },
+          },
+          {
+            image: "/images/carousel/bibicletas-crianca.jpg",
+            //heading: "Sell with confidence",
+            //paragraph: "Turn your pre-loved items into cash with our easy selling platform.",
+            //button: {
+            //  label: "Sell now",
+            //  path: process.env.NEXT_PUBLIC_VENDOR_URL || "https://vendor.mercurjs.com",
+            //},
+          },
+          {
+            image: "/images/carousel/categoria-capacetes.jpg",
+            //heading: "Discover unique finds",
+            //paragraph: "Explore curated collections from top brands and independent sellers.",
+            //button: { label: "Shop now", path: "/categories" },
           },
         ]}
+        autoplay={true}
+        autoplayDelay={5000}
       />
       <div className="px-4 lg:px-8 w-full">
         <HomeProductSection heading="trending listings" locale={locale} home />
