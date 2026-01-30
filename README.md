@@ -187,7 +187,7 @@ This is a refactor of an existing website called **BikesOnline**, currently in t
 
 
    ```sh
-   cd packages/modules/payment-stripe-connect
+   cd ../modules/payment-stripe-connect
    yarn build
    
    cd ../resend
@@ -201,7 +201,24 @@ This is a refactor of an existing website called **BikesOnline**, currently in t
    yarn install --force
    ```
 
-4. **Install dependencies in each app folder (optional - just to be sure):**
+4. **Configure environment variables:**
+   
+   ```sh
+   cd apps/backend
+   cp .env.template .env
+   ```
+   
+   Now, fill the newly created `.env` file with your variables.
+
+5. **Create database, migrate, and create admin account:**
+   
+   ```sh
+   npx medusa db:create
+   npx medusa db:migrate
+   npx medusa user --email admin@mercurjs.com --password 1234
+   ```
+
+6. **Install dependencies in each app folder (optional - just to be sure):**
    ```sh
    cd apps/<app-folder>
    yarn install
@@ -212,7 +229,7 @@ This is a refactor of an existing website called **BikesOnline**, currently in t
    - vendor-panel
    - storefront
 
-5. **Start development servers:**
+7. **Start development servers:**
    In each app folder, run:
    ```sh
    yarn dev
