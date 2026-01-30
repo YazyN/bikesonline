@@ -169,7 +169,7 @@ This is a refactor of an existing website called **BikesOnline**, currently in t
 
 1. **Install dependencies in the base folder:**
    ```sh
-   yarn install
+    yarn install --force
    ```
 
 2. **Build Medusa plugin modules:**
