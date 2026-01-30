@@ -171,7 +171,27 @@ This is a refactor of an existing website called **BikesOnline**, currently in t
    ```sh
    yarn install
    ```
-2. **Install dependencies in each app folder (just to be sure):**
+
+2. **Build Medusa plugin modules:**
+   
+   Before running the backend, you need to build the Medusa plugin packages. These packages require a special build process that generates the `.medusa/server` directory structure:
+   
+   ```sh
+   cd packages/modules/payment-stripe-connect
+   yarn build
+   
+   cd ../resend
+   yarn build
+   
+   cd ../../..
+   ```
+   
+   After building the modules, refresh the workspace symlinks:
+   ```sh
+   yarn install --force
+   ```
+
+3. **Install dependencies in each app folder (optional - just to be sure):**
    ```sh
    cd apps/<app-folder>
    yarn install
@@ -182,7 +202,7 @@ This is a refactor of an existing website called **BikesOnline**, currently in t
    - vendor-panel
    - storefront
 
-3. **Start development servers:**
+4. **Start development servers:**
    In each app folder, run:
    ```sh
    yarn dev
@@ -192,6 +212,15 @@ This is a refactor of an existing website called **BikesOnline**, currently in t
    - admin-panel
    - vendor-panel
    - storefront
+
+### Troubleshooting
+
+**Error: Cannot find module '.medusa/server/src/providers/...'**
+
+This error occurs when the Medusa plugin packages haven't been built yet. Make sure to:
+1. Build both `payment-stripe-connect` and `resend` modules using `yarn build`
+2. Run `yarn install --force` at the root to refresh workspace symlinks
+3. Restart the backend server
 
 ---
 
