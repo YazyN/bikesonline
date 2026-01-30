@@ -172,10 +172,20 @@ This is a refactor of an existing website called **BikesOnline**, currently in t
     yarn install --force
    ```
 
-2. **Build Medusa plugin modules:**
+2. **Build the framework package (required before building modules):**
+   ```sh
+   cd packages/framework
+   yarn build
+   cd ../..
+   ```
+
+3. **Build Medusa plugin modules:**
    
    Before running the backend, you need to build the Medusa plugin packages. These packages require a special build process that generates the `.medusa/server` directory structure:
    
+
+
+
    ```sh
    cd packages/modules/payment-stripe-connect
    yarn build
@@ -191,7 +201,7 @@ This is a refactor of an existing website called **BikesOnline**, currently in t
    yarn install --force
    ```
 
-3. **Install dependencies in each app folder (optional - just to be sure):**
+4. **Install dependencies in each app folder (optional - just to be sure):**
    ```sh
    cd apps/<app-folder>
    yarn install
@@ -202,7 +212,7 @@ This is a refactor of an existing website called **BikesOnline**, currently in t
    - vendor-panel
    - storefront
 
-4. **Start development servers:**
+5. **Start development servers:**
    In each app folder, run:
    ```sh
    yarn dev
