@@ -1,7 +1,8 @@
 import { PropsWithChildren, useCallback, useEffect, useState } from "react"
 
 import { CartContext } from "./context"
-import { Cart, StoreCartLineItemOptimisticUpdate } from "@/types/cart"
+import { StoreCart } from "@medusajs/types"
+import { StoreCartLineItemOptimisticUpdate } from "@/types/cart"
 import { 
   addToCart as apiAddToCart,
   deleteLineItem as apiDeleteLineItem,
@@ -10,7 +11,7 @@ import {
 } from "@/lib/data/cart"
 
 interface CartProviderProps extends PropsWithChildren {
-  cart: Cart | null
+  cart: StoreCart | null
 }
 
 export function CartProvider({ cart, children }: CartProviderProps) {
@@ -71,7 +72,7 @@ export function CartProvider({ cart, children }: CartProviderProps) {
           total,
           tax_total,
           currency_code,
-        } as Cart
+        } as StoreCart
       }
 
       const updatedItems = [
@@ -89,7 +90,7 @@ export function CartProvider({ cart, children }: CartProviderProps) {
         total,
         tax_total,
         currency_code,
-      } as Cart
+      } as StoreCart
     })
   }
 

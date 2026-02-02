@@ -216,6 +216,7 @@ This is a refactor of an existing website called **BikesOnline**, currently in t
    npx medusa db:create
    npx medusa db:migrate
    npx medusa user --email admin@mercurjs.com --password admin
+   Optionally: run yarn seed to fill database with example data
    ```
 
 6. **Install dependencies in each app folder (optional - just to be sure):**

@@ -10,6 +10,13 @@ interface BlogCardProps {
   index: number
 }
 
+const getColorValue = (color: string | { DEFAULT: string; foreground: string } | undefined): string | undefined => {
+  if (typeof color === 'object' && color !== null) {
+    return color.DEFAULT
+  }
+  return color
+}
+
 export function BlogCard({ post, index }: BlogCardProps) {
   return (
     <LocalizedClientLink
@@ -37,7 +44,7 @@ export function BlogCard({ post, index }: BlogCardProps) {
           Read more{" "}
           <ArrowRightIcon
             size={20}
-            color={tailwindConfig.theme.extend.colors.tertiary}
+            color={getColorValue(tailwindConfig.theme.extend.colors.tertiary)}
           />
         </div>
       </div>

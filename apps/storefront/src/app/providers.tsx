@@ -1,13 +1,13 @@
 "use client"
 
 import { CartProvider } from "@/components/providers"
-import { Cart } from "@/types/cart"
+import { StoreCart } from "@medusajs/types"
 import type React from "react"
 
 import { PropsWithChildren } from "react"
 
 interface ProvidersProps extends PropsWithChildren {
-  cart: Cart | null
+  cart: StoreCart | null
 }
 
 export function Providers({ children, cart }: ProvidersProps) {

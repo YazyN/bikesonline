@@ -1,9 +1,10 @@
 import { createContext, useContext } from "react"
 
-import { Cart, StoreCartLineItemOptimisticUpdate } from "@/types/cart"
+import { StoreCart } from "@medusajs/types"
+import { StoreCartLineItemOptimisticUpdate } from "@/types/cart"
 
 interface CartContextInterface {
-  cart: Cart | null
+  cart: StoreCart | null
   onAddToCart: (
     item: StoreCartLineItemOptimisticUpdate,
     currency_code: string
@@ -15,7 +16,7 @@ interface CartContextInterface {
   }) => Promise<void>
   removeCartItem: (lineId: string) => Promise<void>
   updateCartItem: (lineId: string, quantity: number) => Promise<void>
-  refreshCart: () => Promise<Cart | null>
+  refreshCart: () => Promise<StoreCart | null>
   isUpdating: boolean
   isAddingItem: boolean
   isUpdatingItem: boolean

@@ -12,7 +12,7 @@ export default defineConfig(({ mode }) => {
   const BASE = env.VITE_MEDUSA_BASE || "/";
   const BACKEND_URL = env.VITE_MEDUSA_BACKEND_URL || "http://localhost:9000";
   const STOREFRONT_URL =
-    env.VITE_MEDUSA_STOREFRONT_URL || "http://localhost:8000";
+    env.VITE_MEDUSA_STOREFRONT_URL || "http://localhost:3000";
   const B2B_PANEL = env.VITE_MEDUSA_B2B_PANEL || "false";
   const TALK_JS_APP_ID = env.VITE_TALK_JS_APP_ID || undefined;
 

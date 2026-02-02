@@ -159,6 +159,7 @@ export async function createPublishableKey(
   salesChannelId: string
 ) {
   const apiKeyService = container.resolve(Modules.API_KEY)
+  const logger = container.resolve(ContainerRegistrationKeys.LOGGER)
 
   let [key] = await apiKeyService.listApiKeys({ type: 'publishable' })
 
@@ -177,6 +178,9 @@ export async function createPublishableKey(
       }
     })
     key = publishableApiKeyResult
+    logger.info(`Created publishable key: ${key.token}`)
+  } else {
+    logger.info(`Using existing publishable key: ${key.token}`)
   }
 
   await linkSalesChannelsToApiKeyWorkflow(container).run({

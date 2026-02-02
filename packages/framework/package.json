@@ -31,6 +31,10 @@
     "migration:up": " MIKRO_ORM_CLI_CONFIG=./mikro-orm.config.dev.ts medusa-mikro-orm migration:up",
     "orm:cache:clear": " MIKRO_ORM_CLI_CONFIG=./mikro-orm.config.dev.ts medusa-mikro-orm cache:clear"
   },
+  "dependencies": {
+    "stripe": "^17.4.0",
+    "zod": "^3.24.1"
+  },
   "devDependencies": {
     "@medusajs/index": "2.11.3",
     "@medusajs/framework": "2.11.3",

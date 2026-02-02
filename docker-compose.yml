@@ -1,0 +1,101 @@
+version: '3.8'
+services:
+  admin-panel:
+    build:
+      context: .
+      dockerfile: ./apps/admin-panel/Dockerfile
+    ports:
+      - "8000:8000"
+    env_file:
+      - ./apps/admin-panel/.env
+    environment:
+      - VITE_MEDUSA_BACKEND_URL=http://localhost:9000
+    restart: unless-stopped
+    depends_on:
+      - backend
+
+  backend:
+    build:
+      context: .
+      dockerfile: ./apps/backend/Dockerfile
+    ports:
+      - "9000:9000"
+    env_file:
+      - ./apps/backend/.env
+    environment:
+      - DATABASE_URL=postgresql://bikesonline:bo123@postgres-bikesonline:5432/bikesonline?sslmode=disable
+      - REDIS_URL=redis://redis:6379
+      - STORE_CORS=http://storefront:3000,http://localhost:3000
+      - ADMIN_CORS=http://admin-panel:8000,http://localhost:8000
+      - VENDOR_CORS=http://vendor-panel:7000,http://localhost:7000
+      - AUTH_CORS=http://localhost:9000,http://localhost:8000,http://localhost:7000,http://localhost:3000,http://backend:9000,http://admin-panel:8000,http://vendor-panel:7000,http://storefront:3000
+      - SEED_DEMO_DATA=true
+    restart: unless-stopped
+    depends_on:
+      postgres-db:
+        condition: service_healthy
+      redis:
+        condition: service_started
+
+  storefront:
+    build:
+      context: .
+      dockerfile: ./apps/storefront/Dockerfile
+    ports:
+      - "3000:3000"
+    env_file:
+      - ./apps/storefront/.env.local
+    environment:
+      - NEXT_PUBLIC_MEDUSA_BACKEND_URL=http://localhost:9000
+      - NEXT_PUBLIC_BASE_URL=http://localhost:3000
+      - NEXT_PUBLIC_MEDUSA_PUBLISHABLE_KEY=pk_1991ebc9929df41a247b5d6a301569288a097dd6a973a3a828edbce4e26c9334
+    restart: unless-stopped
+    depends_on:
+      - backend
+
+  vendor-panel:
+    build:
+      context: .
+      dockerfile: ./apps/vendor-panel/Dockerfile
+    ports:
+      - "7000:7000"
+    env_file:
+      - ./apps/vendor-panel/.env
+    environment:
+      - VITE_MEDUSA_BACKEND_URL=http://localhost:9000
+    restart: unless-stopped
+    depends_on:
+      - backend
+
+  postgres-db:
+    image: postgres:16
+    container_name: postgres-bikesonline
+    environment:
+      - POSTGRES_USER=bikesonline
+      - POSTGRES_PASSWORD=bo123
+      - POSTGRES_DB=bikesonline
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U bikesonline -d bikesonline"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  redis:
+    image: redis:7-alpine
+    container_name: redis-bikesonline
+    ports:
+      - "6379:6379"
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  postgres_data:

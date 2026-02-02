@@ -45,9 +45,16 @@ export const CustomCarousel = ({
     [emblaApi]
   )
 
+  const getColorValue = (color: string | { DEFAULT: string; foreground: string } | undefined): string | undefined => {
+    if (typeof color === 'object' && color !== null) {
+      return color.DEFAULT
+    }
+    return color
+  }
+
   const arrowColor = {
-    light: tailwindConfig.theme.extend.colors.primary,
-    dark: tailwindConfig.theme.extend.colors.tertiary,
+    light: getColorValue(tailwindConfig.theme.extend.colors.primary),
+    dark: getColorValue(tailwindConfig.theme.extend.colors.tertiary),
   }
 
   return (

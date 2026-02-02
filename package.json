@@ -14,6 +14,11 @@
     "packages/*",
     "packages/modules/*"
   ],
+  "resolutions": {
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "talkjs": "^0.37.0"
+  },
   "scripts": {
     "mercur-exec": "turbo run dev",
     "dev": "turbo run dev",

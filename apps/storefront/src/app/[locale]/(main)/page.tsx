@@ -164,24 +164,18 @@ export default async function Home({
         slides={[
           {
             image: "/images/carousel/categoria-inverno.jpg",
-            //heading: "Snag your style in a flash",
-            //paragraph: "Buy, sell, and discover pre-loved gems from the trendiest brands.",
-            //button: { label: "Buy now", path: "/categories" },
+            heading: "",
+            paragraph: "",
           },
           {
             image: "/images/carousel/bibicletas-crianca.jpg",
-            //heading: "Sell with confidence",
-            //paragraph: "Turn your pre-loved items into cash with our easy selling platform.",
-            //button: {
-            //  label: "Sell now",
-            //  path: process.env.NEXT_PUBLIC_VENDOR_URL || "https://vendor.mercurjs.com",
-            //},
+            heading: "",
+            paragraph: "",
           },
           {
             image: "/images/carousel/categoria-capacetes.jpg",
-            //heading: "Discover unique finds",
-            //paragraph: "Explore curated collections from top brands and independent sellers.",
-            //button: { label: "Shop now", path: "/categories" },
+            heading: "",
+            paragraph: "",
           },
         ]}
         autoplay={true}
