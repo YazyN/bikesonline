@@ -24,7 +24,7 @@ services:
       - ./apps/backend/.env
     environment:
       - DATABASE_URL=postgresql://bikesonline:bo123@postgres-bikesonline:5432/bikesonline?sslmode=disable
-      - REDIS_URL=redis://redis:6379
+      - REDIS_URL=redis://redis-bikesonline:6379
       - STORE_CORS=http://storefront:3000,http://localhost:3000
       - ADMIN_CORS=http://admin-panel:8000,http://localhost:8000
       - VENDOR_CORS=http://vendor-panel:7000,http://localhost:7000
@@ -46,9 +46,10 @@ services:
     env_file:
       - ./apps/storefront/.env.local
     environment:
+      - MEDUSA_BACKEND_URL=http://backend:9000
       - NEXT_PUBLIC_MEDUSA_BACKEND_URL=http://localhost:9000
       - NEXT_PUBLIC_BASE_URL=http://localhost:3000
-      - NEXT_PUBLIC_MEDUSA_PUBLISHABLE_KEY=pk_1991ebc9929df41a247b5d6a301569288a097dd6a973a3a828edbce4e26c9334
+      - NEXT_PUBLIC_MEDUSA_PUBLISHABLE_KEY=pk_9df6817a3bdc4e9bc63dbfd3ba82e1a49f20689e9683b50082ad917d2a45a9fa
     restart: unless-stopped
     depends_on:
       - backend
